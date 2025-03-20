@@ -1,0 +1,15 @@
+.star {
+  display: flex;
+  border: 1px solid #ffffff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.star .text-col {
+  padding: 2rem;
+  text-align: left;
+}
+
+.star .text-col p {
+  font-size: 1.5rem;
+}
