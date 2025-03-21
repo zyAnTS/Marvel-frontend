@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 
-import Carousel from "../components/Carousel";
+import ComicsCard from "../components/ComicsCard";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-const Character = () => {
+const Character = ({ userToken, setUserToken }) => {
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -39,23 +41,41 @@ const Character = () => {
       <p>Loading</p>
     </>
   ) : (
-    <div className="container">
-      <div className="star">
-        <img
-          src={
-            character.thumbnail.path +
-            "/portrait_uncanny." +
-            character.thumbnail.extension
-          }
-          alt="Hero portrait"
-        />
+    <>
+      <Header userToken={userToken} setUserToken={setUserToken} />
+      <div className="container">
+        <div className="star">
+          <img
+            src={
+              character.thumbnail.path +
+              "/portrait_uncanny." +
+              character.thumbnail.extension
+            }
+            alt="Hero portrait"
+          />
+          <div className="text-col">
+            <h1>{character.name}</h1>
+            <p>{character.description}</p>
+          </div>
+        </div>
         <div className="text-col">
-          <h1>{character.name}</h1>
-          <p>{character.description}</p>
+          <h2>Appears in comics</h2>
+          <article>
+            {comicsCharacter.map((elem) => {
+              return (
+                <ComicsCard
+                  elem={elem}
+                  key={elem._id}
+                  userToken={userToken}
+                  setUserToken={setUserToken}
+                />
+              );
+            })}
+          </article>
         </div>
       </div>
-      <Carousel comics={comicsCharacter} />
-    </div>
+      <Footer />
+    </>
   );
 };
 

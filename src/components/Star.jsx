@@ -1,26 +1,32 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import Carousel from "./Carousel";
 import "/src/assets/styles/star.css";
+import stars from "../assets/data/stars.json";
 
-const Star = ({ character }) => {
-  let choosenOne = Math.floor(Math.random() * 10) + 1;
+const Star = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/character/" + stars[num]._id);
+  };
+
+  let choosenOne = Math.floor(Math.random() * stars.length) + 1;
   let num = Number(choosenOne);
 
   return (
-    <div className="star">
+    <div className="star" onClick={handleNavigate}>
       <img
         src={
-          character[num].thumbnail.path +
+          stars[num].thumbnail.path +
           "/portrait_uncanny." +
-          character[num].thumbnail.extension
+          stars[num].thumbnail.extension
         }
         alt="Hero portrait"
       />
       <div className="text-col">
-        <h1>{character[num].name}</h1>
-        <p>{character[num].description}</p>
-        {/* <Carousel comics={character[77].comics} /> */}
+        <h1>{stars[num].name}</h1>
+        <p>{stars[num].description}</p>
       </div>
     </div>
   );

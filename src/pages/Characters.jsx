@@ -2,12 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import banner from "../../public/marvel-banner-characters.jpg";
+import banner from "../assets/img/marvel-banner-characters.jpg";
 import CharacterCard from "../components/CharacterCard";
 import SearchBar from "../components/SearchBar";
 import Button from "../components/Button";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-const Characters = () => {
+const Characters = ({ userToken, setUserToken }) => {
   const [characters, setCharacters] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,6 +22,11 @@ const Characters = () => {
   };
   const handleNext = () => {
     setPage(page + 1);
+  };
+  const handlePage = (event) => {
+    setPage(event.target.value);
+    // if (event.target.value > 0 && event.target.value < 500) {
+    // }
   };
 
   useEffect(() => {
@@ -63,7 +70,6 @@ const Characters = () => {
 
     fetchData();
   }, [name, page, limit]);
-  console.log(name);
 
   return isLoading ? (
     <>
@@ -71,6 +77,7 @@ const Characters = () => {
     </>
   ) : (
     <>
+      <Header userToken={userToken} setUserToken={setUserToken} />
       <div className="hero">
         <img src={banner} alt="Bannière Marvel" />
         <SearchBar
@@ -83,33 +90,51 @@ const Characters = () => {
       </div>
       <div className="container">
         <section>
-          <div className="pagination">
-            <div onClick={handlePrevious}>
-              <Button
-                text="< Previous"
-                icon=""
-                showText={true}
-                showIcon={false}
-                classButton=""
-              />
-            </div>{" "}
-            <div onClick={handleNext}>
-              <Button
-                text="Next >"
-                icon=""
-                showText={true}
-                showIcon={false}
-                classButton=""
-              />
-            </div>
-          </div>
           <article>
-            {characters.map((elem) => {
-              return <CharacterCard elem={elem} key={elem._id} />;
+            {characters.results.map((elem) => {
+              return (
+                <CharacterCard
+                  elem={elem}
+                  key={elem._id}
+                  userToken={userToken}
+                  setUserToken={setUserToken}
+                />
+              );
             })}
           </article>
         </section>
       </div>
+      <div className="pagination">
+        <div onClick={handlePrevious}>
+          <Button
+            text="< Previous"
+            icon=""
+            showText={true}
+            showIcon={false}
+            classButton=""
+          />
+        </div>
+        <div className="pagination-choose">
+          <input
+            type="number"
+            name={page}
+            id={page}
+            value={page}
+            onChange={handlePage}
+          />
+          / {Math.ceil(characters.count / limit)}
+        </div>
+        <div onClick={handleNext}>
+          <Button
+            text="Next >"
+            icon=""
+            showText={true}
+            showIcon={false}
+            classButton=""
+          />
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };

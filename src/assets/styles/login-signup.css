@@ -1,0 +1,76 @@
+.authentication {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/authentication.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.authentication > .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  min-width: 356px;
+}
+
+.formulary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: #333333;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 10px 0px #00000077;
+}
+
+.formulary > button {
+  border: none;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1;
+  text-decoration: underline;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form > button {
+  justify-content: center;
+}
+
+form > button:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+form input {
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #cccccc;
+}
+
+.input-error {
+  background-color: #ec1d24;
+}
+
+.error {
+  color: #ec1d24;
+}

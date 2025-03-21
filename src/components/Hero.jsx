@@ -1,6 +1,6 @@
 import React from "react";
 
-import banner from "../../public/marvel-banner.jpg";
+import banner from "../assets/img/marvel-banner.jpg";
 import "/src/assets/styles/hero.css";
 
 const Hero = () => {

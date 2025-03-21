@@ -1,6 +1,6 @@
 import React from "react";
 
-import logo from "../../public/marvel-logo-white.png";
+import logo from "../assets/img/marvel-logo-white.png";
 import "/src/assets/styles/footer.css";
 
 const Footer = () => {

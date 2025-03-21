@@ -1,8 +1,18 @@
 .star {
   display: flex;
-  border: 1px solid #ffffff;
-  border-radius: 0.5rem;
+  /* border: 1px solid #ffffff; */
+  background: rgb(92, 3, 11);
+  background: linear-gradient(
+    45deg,
+    rgba(92, 3, 11, 1) 0%,
+    rgba(92, 3, 11, 1) 40%,
+    rgba(146, 28, 40, 1) 100%
+  );
+  background-image: url("../img/background-star.jpg");
+  border-radius: 0rem;
   overflow: hidden;
+  box-shadow: 0px 4px 10px 0px #00000077;
+  cursor: pointer;
 }
 
 .star .text-col {
@@ -12,4 +22,24 @@
 
 .star .text-col p {
   font-size: 1.5rem;
+}
+
+.prime {
+  position: relative;
+  overflow: hidden;
+}
+
+.star-label {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  background-color: #ec1d24;
+  padding: 1rem;
+  border-radius: 0 0 0 0.5rem;
+  box-shadow: -5px 8px 15px 5px #000000aa;
+}
+
+.star-label span {
+  color: #222222;
 }

@@ -1,19 +1,17 @@
-.card {
+.character-card {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   border-radius: 0.5rem;
   width: calc((100% - 2rem) / 5);
+  min-width: 200px;
   overflow: hidden;
   background-color: #3b3b3b;
+  cursor: pointer;
 }
 
-.card-img {
-  height: 300px;
-}
-
-.card-text {
+.character-card .card-text {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -31,18 +29,111 @@
   );
 }
 
-.card img {
+.character-card img {
   width: 100%;
   object-fit: cover;
   transition-duration: 0.3s;
 }
 
-.card img:hover {
-  scale: 1.2;
+.character-card img:hover {
+  scale: 1.1;
   overflow: hidden;
 }
 
-.card p {
-  height: 2.6rem;
+.character-card .card-img {
+  height: 300px;
+}
+
+.comics-card {
+  position: relative;
+  display: flex;
+  border-radius: 0.5rem;
+  width: calc((100% - 0.5rem) / 2);
+  background-color: #3b3b3b;
   overflow: hidden;
+}
+
+.comics-card .card-img {
+  position: relative;
+  height: 100%;
+}
+
+.card-img img {
+  height: 100%;
+}
+
+.comics-card .card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.comics-card p {
+  line-height: 1.5;
+  height: 264px;
+  overflow: hidden;
+}
+
+.comics-card-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.comics-card-title .favorite {
+  position: inherit;
+}
+
+.comics-card-title .favorite-add {
+  position: inherit;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #ffffff11;
+  border: 1px solid #ffffff;
+  padding: 0.5rem;
+  border-radius: 3rem;
+  opacity: 0.5;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.favorite:hover {
+  opacity: 1;
+}
+
+.favorite i {
+  color: #ffffff;
+}
+
+.favorite-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #ffffff11;
+  border: 1px solid #ffffff;
+  padding: 0.5rem;
+  border-radius: 3rem;
+  opacity: 0.5;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.favorite-add:hover {
+  opacity: 1;
+}
+
+.favorite-add i {
+  color: #ec1d24;
 }

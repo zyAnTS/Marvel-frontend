@@ -1,24 +1,26 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import logo from "../../public/marvel-logo.png";
+import logo from "../assets/img/marvel-logo.png";
 import "/src/assets/styles/header.css";
 
 import Button from "./Button";
 
-const Header = ({ setName, setTitle }) => {
+const Header = ({ userToken, setUserToken }) => {
   const navigate = useNavigate();
 
   const handleNavigateCharacters = () => {
-    setTitle("");
     navigate("/characters");
   };
   const handleNavigateComics = () => {
-    setName("");
     navigate("/comics");
   };
-  const handleAlert = () => {
-    alert("Coming soon");
+  const handleLogin = () => {
+    navigate("/login");
+  };
+  const handleLogout = () => {
+    Cookies.remove("token");
+    setUserToken(null);
   };
 
   return (
@@ -47,15 +49,27 @@ const Header = ({ setName, setTitle }) => {
         <Link to="/">
           <img src={logo} alt="Logo Marvel" />
         </Link>
-        <div onClick={handleAlert}>
-          <Button
-            text="Log In | Sign Up"
-            icon="fa-regular fa-user"
-            showText={true}
-            showIcon={true}
-            classButton=""
-          />
-        </div>
+        {userToken ? (
+          <div onClick={handleLogin}>
+            <Button
+              text="Log Out"
+              icon="fa-regular fa-circle-xmark"
+              showText={true}
+              showIcon={true}
+              classButton=""
+            />
+          </div>
+        ) : (
+          <div onClick={handleLogin}>
+            <Button
+              text="Log In | Sign Up"
+              icon="fa-regular fa-user"
+              showText={true}
+              showIcon={true}
+              classButton=""
+            />
+          </div>
+        )}
       </div>
     </header>
   );

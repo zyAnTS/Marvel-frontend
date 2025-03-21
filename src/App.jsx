@@ -1,137 +1,56 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import Cookies from "js-cookie";
 
 import "/src/assets/styles/generic.css";
-
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import Character from "./pages/Character";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
-  const [characters, setCharacters] = useState(null);
-  const [comics, setComics] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [favorites, setFavorites] = useState([]);
 
-  const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [userToken, setUserToken] = useState(Cookies.get("token") || null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // filtrer
-        let filtersCharacters = "";
-        let filtersComics = "";
-
-        if (name) {
-          filtersCharacters += "?name=" + name;
-        }
-
-        if (title) {
-          filtersComics += "?title=" + title;
-        }
-
-        if (page) {
-          if (filtersCharacters) {
-            filtersCharacters += "&page=" + page;
-          } else {
-            filtersCharacters += "?page=" + page;
-          }
-          if (filtersComics) {
-            filtersComics += "&page=" + page;
-          } else {
-            filtersComics += "?page=" + page;
-          }
-        }
-
-        if (limit) {
-          if (filtersCharacters) {
-            filtersCharacters += "&limit=" + limit;
-          } else {
-            filtersCharacters += "?limit=" + limit;
-          }
-          if (filtersComics) {
-            filtersComics += "&limit=" + limit;
-          } else {
-            filtersComics += "?limit=" + limit;
-          }
-        }
-
-        // récupérer
-        const responseCharacters = await axios.get(
-          "http://localhost:3000/characters" + filtersCharacters
-        );
-        const responseComics = await axios.get(
-          "http://localhost:3000/comics" + filtersComics
-        );
-
-        // retourner
-        setCharacters(responseCharacters.data);
-        setComics(responseComics.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-
-    fetchData();
-  }, [name, title, page, limit]);
-
-  return isLoading ? (
-    <>
-      <p>Loading</p>
-    </>
-  ) : (
+  return (
     <>
       <Router>
-        <Header setName={setName} setTitle={setTitle} />
         <Routes>
           <Route
             path="/"
-            element={
-              <Home
-                characters={characters}
-                comics={comics}
-                setLimit={setLimit}
-              />
-            }
+            element={<Home userToken={userToken} setUserToken={setUserToken} />}
           />
           <Route
             path="/characters"
             element={
-              <Characters
-              // characters={characters}
-              // name={name}
-              // setName={setName}
-              // setLimit={setLimit}
-              // page={page}
-              // setPage={setPage}
-              />
+              <Characters userToken={userToken} setUserToken={setUserToken} />
             }
           />
           <Route
             path="/comics"
             element={
-              <Comics
-              // comics={comics}
-              // title={title}
-              // setTitle={setTitle}
-              // setLimit={setLimit}
-              // page={page}
-              // setPage={setPage}
-              />
+              <Comics userToken={userToken} setUserToken={setUserToken} />
             }
           />
-          <Route path="/character/:id" element={<Character />} />
+          <Route
+            path="/character/:id"
+            element={
+              <Character userToken={userToken} setUserToken={setUserToken} />
+            }
+          />
+          <Route
+            path="/login"
+            element={<Login setUserToken={setUserToken} />}
+          />
+          <Route
+            path="/signup"
+            element={<Signup setUserToken={setUserToken} />}
+          />
         </Routes>
-        <Footer />
       </Router>
     </>
   );
