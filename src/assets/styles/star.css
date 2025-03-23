@@ -15,6 +15,11 @@
   cursor: pointer;
 }
 
+.star img {
+  height: 450px;
+  transition-duration: 0.3s;
+}
+
 .star .text-col {
   padding: 2rem;
   text-align: left;
@@ -22,6 +27,8 @@
 
 .star .text-col p {
   font-size: 1.5rem;
+  height: 180px;
+  overflow: hidden;
 }
 
 .prime {
@@ -40,6 +47,48 @@
   box-shadow: -5px 8px 15px 5px #000000aa;
 }
 
+.star-label h3 {
+  font-size: 1.5rem;
+  transition-duration: 0.3s;
+}
+
 .star-label span {
   color: #222222;
+}
+
+@media (max-width: 1024px) {
+  .star img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .star img {
+    height: 350px;
+  }
+
+  .star-label h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .star {
+    flex-direction: column;
+  }
+
+  .star img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .star-label h3 {
+    font-size: 1.25rem;
+  }
+
+  .star > .text-col > p {
+    font-size: 1.12rem;
+    height: auto;
+  }
 }

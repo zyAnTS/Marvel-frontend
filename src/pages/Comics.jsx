@@ -10,7 +10,7 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Comics = ({ userToken, setUserToken }) => {
+const Comics = ({ userToken, setUserToken, user }) => {
   const navigate = useNavigate();
 
   const [comics, setComics] = useState(null);
@@ -82,7 +82,7 @@ const Comics = ({ userToken, setUserToken }) => {
     </>
   ) : (
     <>
-      <Header userToken={userToken} setUserToken={setUserToken} />
+      <Header userToken={userToken} setUserToken={setUserToken} user={user} />
       <div className="hero">
         <img src={banner} alt="Bannière Marvel" />
         <SearchBar
@@ -99,12 +99,7 @@ const Comics = ({ userToken, setUserToken }) => {
           <article>
             {comics.results.map((elem) => {
               return (
-                <ComicsCard
-                  elem={elem}
-                  key={elem._id}
-                  userToken={userToken}
-                  setUserToken={setUserToken}
-                />
+                <ComicsCard elem={elem} key={elem._id} userToken={userToken} />
               );
             })}
           </article>

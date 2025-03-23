@@ -58,24 +58,17 @@ const Signup = ({ setUserToken }) => {
                 setErrorPassword(false);
                 try {
                   const response = await axios.post(
-                    "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+                    "http://localhost:3000/user/signup",
                     {
                       email: email,
                       username: username,
                       password: password,
                     }
                   );
-                  if (response.data.token) {
-                    Cookies.set("token", response.data.token);
-                    setUserToken(response.data.token);
-                    if (location.state) {
-                      navigate(location.state.from);
-                    } else {
-                      navigate("/");
-                    }
-                  } else {
-                    setErrorMessage(true);
-                  }
+
+                  Cookies.set("token", response.data.token);
+                  setUserToken(response.data.token);
+                  navigate("/");
                 } catch (error) {
                   setErrorMessage(true);
                   console.log(error.message);

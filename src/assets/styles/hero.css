@@ -3,10 +3,23 @@
   justify-content: center;
   align-items: center;
   height: 60vh;
+  transition-duration: 0.3s;
 }
 
 .hero img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 40vh;
+  }
 }

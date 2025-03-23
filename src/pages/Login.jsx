@@ -47,17 +47,17 @@ const LogIn = ({ setUserToken }) => {
                 setErrorPassword(false);
                 try {
                   const response = await axios.post(
-                    "https://lereacteur-vinted-api.herokuapp.com/user/login",
+                    "http://localhost:3000/user/login",
                     {
                       email: email,
                       password: password,
                     }
                   );
-                  console.log(response.data);
                   if (response.data.token) {
                     Cookies.set("token", response.data.token);
                     setUserToken(response.data.token);
                     setErrorMessage(false);
+                    navigate("/");
                   } else {
                     setErrorMessage(true);
                   }

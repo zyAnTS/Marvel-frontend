@@ -11,6 +11,7 @@ header .container {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2rem;
+  transition-duration: 0.3s;
 }
 
 header img {
@@ -20,4 +21,63 @@ header img {
 nav {
   display: flex;
   gap: 0.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.connect {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.connect-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  header .container {
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  header nav {
+  }
+}
+
+@media (max-width: 600px) {
+  header .container {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .connect {
+    display: none;
+  }
+
+  .connect-mobile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .connect-mobile > div {
+    width: 100%;
+  }
+
+  .connect-mobile > div > button {
+    width: 100%;
+    padding: 1rem 0.5rem;
+  }
+
+  .connect-mobile > div > button > p {
+    width: 100%;
+  }
 }

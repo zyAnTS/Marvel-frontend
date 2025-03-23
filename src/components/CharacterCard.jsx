@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "/src/assets/styles/cards.css";
@@ -6,8 +6,6 @@ import Favorite from "./Favorite";
 
 const CharacterCard = ({ elem, key, userToken }) => {
   const navigate = useNavigate();
-
-  const [favorite, setFavorite] = useState(false);
 
   const handleNavigate = () => {
     navigate("/character/" + elem._id);
@@ -21,11 +19,7 @@ const CharacterCard = ({ elem, key, userToken }) => {
         }
         alt={"apercu " + elem.name}
       />
-      <Favorite
-        favorite={favorite}
-        setFavorite={setFavorite}
-        userToken={userToken}
-      />
+      <Favorite userToken={userToken} elem={elem} />
 
       <div className="card-text">
         <h3>{elem.name}</h3>

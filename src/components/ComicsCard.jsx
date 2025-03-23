@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "/src/assets/styles/cards.css";
 import Favorite from "./Favorite";
 
 const ComicsCard = ({ elem, key, userToken }) => {
-  const [favorite, setFavorite] = useState(false);
-
   return (
     <div className="comics-card" key={key}>
       <div className="card-img">
@@ -21,11 +19,7 @@ const ComicsCard = ({ elem, key, userToken }) => {
       <div className="card-text">
         <div className="comics-card-title">
           <h3>{elem.title}</h3>
-          <Favorite
-            favorite={favorite}
-            setFavorite={setFavorite}
-            userToken={userToken}
-          />
+          <Favorite userToken={userToken} elem={elem} />
         </div>
         <p>{elem.description}</p>
       </div>

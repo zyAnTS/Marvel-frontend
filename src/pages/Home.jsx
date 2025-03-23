@@ -11,7 +11,7 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Home = ({ userToken, setUserToken }) => {
+const Home = ({ userToken, setUserToken, user }) => {
   const navigate = useNavigate();
 
   const [characters, setCharacters] = useState(null);
@@ -96,9 +96,17 @@ const Home = ({ userToken, setUserToken }) => {
     </>
   ) : (
     <>
-      <Header userToken={userToken} setUserToken={setUserToken} />
+      <Header userToken={userToken} setUserToken={setUserToken} user={user} />
       <Hero />
       <div className="container">
+        <div className="prime">
+          <div className="star-label">
+            <h3>
+              Spotlight <span>on</span>
+            </h3>
+          </div>
+          <Star />
+        </div>
         <div className="edito">
           <h1>Explore the Marvel Universe</h1>
           <p>
@@ -114,19 +122,18 @@ const Home = ({ userToken, setUserToken }) => {
             the Marvelverse!
           </p>
         </div>
-        <div className="prime">
-          <div className="star-label">
-            <h3>
-              Spotlight <span>on</span>
-            </h3>
-          </div>
-          <Star />
-        </div>
+
         <section>
           <h2>Characters</h2>
           <article>
             {characters.results.map((elem) => {
-              return <CharacterCard elem={elem} />;
+              return (
+                <CharacterCard
+                  elem={elem}
+                  userToken={userToken}
+                  key={elem._id}
+                />
+              );
             })}
           </article>
           <div onClick={handleNavigateCharacters}>
@@ -143,7 +150,9 @@ const Home = ({ userToken, setUserToken }) => {
           <h2>Comics</h2>
           <article>
             {comics.results.map((elem) => {
-              return <ComicsCard elem={elem} />;
+              return (
+                <ComicsCard elem={elem} userToken={userToken} key={elem._id} />
+              );
             })}
           </article>
           <div onClick={handleNavigateComics}>

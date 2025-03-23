@@ -1,24 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Favorite = ({ favorite, setFavorite, userToken }) => {
+const Favorite = ({ userToken, elem }) => {
   const navigate = useNavigate();
 
-  const handleFavorite = (event) => {
-    event.stopPropagation();
-    userToken ? setFavorite(!favorite) : navigate("/login");
-  };
+  const [thumbnail, setThumbnail] = useState(elem.thumbnail);
+  const [comics, setComics] = useState(elem.comics);
+  const [name, setName] = useState(elem.name);
+  const [title, setTitle] = useState(elem.title);
+  const [description, setDescription] = useState(elem.description);
+  const [favorite, setFavorite] = useState(true);
 
   return (
     <>
-      {favorite ? (
-        <div className="favorite-add" onClick={handleFavorite}>
-          <i className="fa-solid fa-heart"></i>
-        </div>
+      {elem.favorite ? (
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            try {
+              const response = await axios.delete(
+                "http://localhost:3000/favorites/character/" + elem._id
+              );
+              console.log(response.data);
+            } catch (error) {
+              console.log(error.response);
+            }
+          }}
+        >
+          <button
+            className="favorite-add"
+            onClick={(event) => {
+              event.stopPropagation();
+              elem.favorite = false;
+            }}
+          >
+            <i className="fa-solid fa-heart"></i>
+          </button>
+        </form>
       ) : (
-        <div className="favorite" onClick={handleFavorite}>
-          <i className="fa-regular fa-heart"></i>
-        </div>
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append("thumbnail", thumbnail);
+            formData.append("comics", comics);
+            formData.append("name", name);
+            formData.append("title", title);
+            formData.append("description", description);
+            formData.append("favorite", favorite);
+
+            if (userToken) {
+              try {
+                const response = await axios.post(
+                  "http://localhost:3000/favorites/character",
+                  formData,
+                  {
+                    headers: {
+                      authorization: "Bearer " + userToken,
+                      "Content-Type": "multipart/form-data",
+                    },
+                  }
+                );
+                console.log(elem.comics);
+
+                console.log(response.data);
+              } catch (error) {
+                console.log(error.response);
+              }
+            } else {
+              navigate("/login");
+            }
+          }}
+        >
+          <button
+            className="favorite"
+            onClick={(event) => {
+              event.stopPropagation();
+              elem.favorite = true;
+            }}
+          >
+            <i className="fa-regular fa-heart"></i>
+          </button>
+        </form>
       )}
     </>
   );

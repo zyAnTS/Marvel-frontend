@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Characters = ({ userToken, setUserToken }) => {
+const Characters = ({ userToken, setUserToken, user }) => {
   const [characters, setCharacters] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -77,7 +77,7 @@ const Characters = ({ userToken, setUserToken }) => {
     </>
   ) : (
     <>
-      <Header userToken={userToken} setUserToken={setUserToken} />
+      <Header userToken={userToken} setUserToken={setUserToken} user={user} />
       <div className="hero">
         <img src={banner} alt="Bannière Marvel" />
         <SearchBar
@@ -97,7 +97,6 @@ const Characters = ({ userToken, setUserToken }) => {
                   elem={elem}
                   key={elem._id}
                   userToken={userToken}
-                  setUserToken={setUserToken}
                 />
               );
             })}

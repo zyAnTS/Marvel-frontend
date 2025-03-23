@@ -8,7 +8,7 @@ import ComicsCard from "../components/ComicsCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Character = ({ userToken, setUserToken }) => {
+const Character = ({ userToken, setUserToken, user }) => {
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +42,7 @@ const Character = ({ userToken, setUserToken }) => {
     </>
   ) : (
     <>
-      <Header userToken={userToken} setUserToken={setUserToken} />
+      <Header userToken={userToken} setUserToken={setUserToken} user={user} />
       <div className="container">
         <div className="star">
           <img
@@ -58,21 +58,22 @@ const Character = ({ userToken, setUserToken }) => {
             <p>{character.description}</p>
           </div>
         </div>
-        <div className="text-col">
-          <h2>Appears in comics</h2>
-          <article>
-            {comicsCharacter.map((elem) => {
-              return (
-                <ComicsCard
-                  elem={elem}
-                  key={elem._id}
-                  userToken={userToken}
-                  setUserToken={setUserToken}
-                />
-              );
-            })}
-          </article>
-        </div>
+        {comicsCharacter.length > 0 && (
+          <div className="text-col">
+            <h2>Appears in comics</h2>
+            <article>
+              {comicsCharacter.map((elem) => {
+                return (
+                  <ComicsCard
+                    elem={elem}
+                    key={elem._id}
+                    userToken={userToken}
+                  />
+                );
+              })}
+            </article>
+          </div>
+        )}
       </div>
       <Footer />
     </>
