@@ -21,10 +21,12 @@ const Favorites = (userToken, user) => {
       try {
         // récupérer
         const responseCharacters = await axios.get(
-          "http://localhost:3000/favorites/character?owner=" + id
+          "https://site--marvel--mz8pkhlfl2x7.code.run/favorites/character?owner=" +
+            id
         );
         const responseComics = await axios.get(
-          "http://localhost:3000/favorites/comics?owner=" + id
+          "https://site--marvel--mz8pkhlfl2x7.code.run/favorites/comics?owner=" +
+            id
         );
 
         // retourner

@@ -62,7 +62,7 @@ const Comics = ({ userToken, setUserToken, user }) => {
 
         // récupérer
         const responseComics = await axios.get(
-          "http://localhost:3000/comics" + filtersComics
+          "https://site--marvel--mz8pkhlfl2x7.code.run/comics" + filtersComics
         );
 
         // retourner

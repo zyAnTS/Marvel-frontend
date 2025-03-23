@@ -58,7 +58,7 @@ const Signup = ({ setUserToken }) => {
                 setErrorPassword(false);
                 try {
                   const response = await axios.post(
-                    "http://localhost:3000/user/signup",
+                    "https://site--marvel--mz8pkhlfl2x7.code.run/user/signup",
                     {
                       email: email,
                       username: username,

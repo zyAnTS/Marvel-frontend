@@ -19,10 +19,10 @@ const Character = ({ userToken, setUserToken, user }) => {
     const fetchData = async () => {
       try {
         const responseCharacter = await axios.get(
-          "http://localhost:3000/character/" + id
+          "https://site--marvel--mz8pkhlfl2x7.code.run/character/" + id
         );
         const responseComicsCharacter = await axios.get(
-          "http://localhost:3000/comics/" + id
+          "https://site--marvel--mz8pkhlfl2x7.code.run/comics/" + id
         );
 
         setCharacter(responseCharacter.data);

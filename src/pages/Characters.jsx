@@ -57,7 +57,8 @@ const Characters = ({ userToken, setUserToken, user }) => {
 
         // récupérer
         const responseCharacters = await axios.get(
-          "http://localhost:3000/characters" + filtersCharacters
+          "https://site--marvel--mz8pkhlfl2x7.code.run/characters" +
+            filtersCharacters
         );
 
         // retourner

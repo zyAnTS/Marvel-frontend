@@ -20,7 +20,8 @@ const Favorite = ({ userToken, elem }) => {
             event.preventDefault();
             try {
               const response = await axios.delete(
-                "http://localhost:3000/favorites/character/" + elem._id
+                "https://site--marvel--mz8pkhlfl2x7.code.run/favorites/character/" +
+                  elem._id
               );
               console.log(response.data);
             } catch (error) {

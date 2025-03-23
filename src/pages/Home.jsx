@@ -66,10 +66,11 @@ const Home = ({ userToken, setUserToken, user }) => {
 
         // récupérer
         const responseCharacters = await axios.get(
-          "http://localhost:3000/characters" + filtersCharacters
+          "https://site--marvel--mz8pkhlfl2x7.code.run/characters" +
+            filtersCharacters
         );
         const responseComics = await axios.get(
-          "http://localhost:3000/comics" + filtersComics
+          "https://site--marvel--mz8pkhlfl2x7.code.run/comics" + filtersComics
         );
 
         // retourner
