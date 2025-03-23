@@ -22,3 +22,9 @@ footer .text-col {
   color: #aaaaaa;
   font-size: 0.85rem;
 }
+
+@media (max-width: 768px) {
+  footer .container {
+    flex-direction: column;
+  }
+}
