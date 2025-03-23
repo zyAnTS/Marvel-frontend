@@ -7,6 +7,7 @@ import axios from "axios";
 import ComicsCard from "../components/ComicsCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 const Character = ({ userToken, setUserToken, user }) => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const Character = ({ userToken, setUserToken, user }) => {
 
   return isLoading ? (
     <>
-      <p>Loading</p>
+      <Loading />
     </>
   ) : (
     <>

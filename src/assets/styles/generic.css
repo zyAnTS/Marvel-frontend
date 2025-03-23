@@ -168,6 +168,19 @@ article {
   -moz-appearance: textfield;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.loading > img {
+  width: 96px;
+}
+
 @media (max-width: 1024px) {
   h1 {
     font-size: 4rem;

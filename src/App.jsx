@@ -13,6 +13,7 @@ import Character from "./pages/Character";
 import Favorites from "./pages/Favorites";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Loading from "./components/Loading";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("token") || null);
@@ -48,7 +49,7 @@ function App() {
 
   return isLoading ? (
     <>
-      <p>Loading</p>
+      <Loading />
     </>
   ) : (
     <>

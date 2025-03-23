@@ -9,6 +9,7 @@ import SearchBar from "../components/SearchBar";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 const Comics = ({ userToken, setUserToken, user }) => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ const Comics = ({ userToken, setUserToken, user }) => {
 
   return isLoading ? (
     <>
-      <p>Loading</p>
+      <Loading />
     </>
   ) : (
     <>

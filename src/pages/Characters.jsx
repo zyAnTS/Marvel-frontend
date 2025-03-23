@@ -8,6 +8,7 @@ import SearchBar from "../components/SearchBar";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 const Characters = ({ userToken, setUserToken, user }) => {
   const [characters, setCharacters] = useState(null);
@@ -74,7 +75,7 @@ const Characters = ({ userToken, setUserToken, user }) => {
 
   return isLoading ? (
     <>
-      <p>Loading</p>
+      <Loading />
     </>
   ) : (
     <>

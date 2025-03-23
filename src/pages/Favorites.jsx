@@ -5,6 +5,7 @@ import axios from "axios";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 import CharacterCard from "../components/CharacterCard";
 import ComicsCard from "../components/ComicsCard";
@@ -43,7 +44,7 @@ const Favorites = (userToken, user) => {
 
   return isLoading ? (
     <>
-      <p>Loading</p>
+      <Loading />
     </>
   ) : (
     <>
