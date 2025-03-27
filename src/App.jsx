@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -16,7 +16,10 @@ import Signup from "./pages/Signup";
 import Loading from "./components/Loading";
 
 function App() {
+  const FavoriteContext = createContext();
+
   const [userToken, setUserToken] = useState(Cookies.get("token") || null);
+  const [pingFavorite, setPingFavorite] = useState(false);
 
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,62 +56,64 @@ function App() {
     </>
   ) : (
     <>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                userToken={userToken}
-                setUserToken={setUserToken}
-                user={user}
-              />
-            }
-          />
-          <Route
-            path="/characters"
-            element={
-              <Characters
-                userToken={userToken}
-                setUserToken={setUserToken}
-                user={user}
-              />
-            }
-          />
-          <Route
-            path="/comics"
-            element={
-              <Comics
-                userToken={userToken}
-                setUserToken={setUserToken}
-                user={user}
-              />
-            }
-          />
-          <Route
-            path="/character/:id"
-            element={
-              <Character
-                userToken={userToken}
-                setUserToken={setUserToken}
-                user={user}
-              />
-            }
-          />
-          <Route
-            path="/favorites/:id"
-            element={<Favorites userToken={userToken} user={user} />}
-          />
-          <Route
-            path="/login"
-            element={<Login setUserToken={setUserToken} />}
-          />
-          <Route
-            path="/signup"
-            element={<Signup setUserToken={setUserToken} />}
-          />
-        </Routes>
-      </Router>
+      <FavoriteContext.Provider value={{ pingFavorite, setPingFavorite }}>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  user={user}
+                  userToken={userToken}
+                  setUserToken={setUserToken}
+                />
+              }
+            />
+            <Route
+              path="/characters"
+              element={
+                <Characters
+                  user={user}
+                  userToken={userToken}
+                  setUserToken={setUserToken}
+                />
+              }
+            />
+            <Route
+              path="/comics"
+              element={
+                <Comics
+                  user={user}
+                  userToken={userToken}
+                  setUserToken={setUserToken}
+                />
+              }
+            />
+            <Route
+              path="/character/:id"
+              element={
+                <Character
+                  user={user}
+                  userToken={userToken}
+                  setUserToken={setUserToken}
+                />
+              }
+            />
+            <Route
+              path="/favorites/:id"
+              element={<Favorites user={user} userToken={userToken} />}
+            />
+            <Route
+              path="/login"
+              element={<Login setUserToken={setUserToken} />}
+            />
+            <Route
+              path="/signup"
+              element={<Signup setUserToken={setUserToken} />}
+            />
+          </Routes>
+        </Router>
+      </FavoriteContext.Provider>
     </>
   );
 }

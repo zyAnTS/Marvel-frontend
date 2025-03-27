@@ -10,7 +10,7 @@ import Loading from "../components/Loading";
 import CharacterCard from "../components/CharacterCard";
 import ComicsCard from "../components/ComicsCard";
 
-const Favorites = (userToken, user) => {
+const Favorites = (userToken) => {
   const [characters, setCharacters] = useState(null);
   const [comics, setComics] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

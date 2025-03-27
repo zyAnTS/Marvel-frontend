@@ -1,29 +1,36 @@
-import React, { useState } from "react";
+import { React, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Favorite = ({ userToken, elem }) => {
   const navigate = useNavigate();
 
+  const { pingFavorite, setPingFavorite } = useContext(FavoriteContext);
+
   const [thumbnail, setThumbnail] = useState(elem.thumbnail);
   const [comics, setComics] = useState(elem.comics);
   const [name, setName] = useState(elem.name);
-  const [title, setTitle] = useState(elem.title);
   const [description, setDescription] = useState(elem.description);
+  const [favorite, setFavorite] = useState(true);
 
   const handlePost = async (event) => {
     event.stopPropagation();
     elem.favorite = true;
+    setPingFavorite(!pingFavorite);
+
+    console.log(elem.comics);
+    console.log(elem.thumbnail);
+
     if (userToken) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/favorites/character",
+          "https://site--marvel--mz8pkhlfl2x7.code.run/favorites/character/",
           {
+            name,
+            description,
             thumbnail,
             comics,
-            name,
-            title,
-            description,
+            favorite,
           },
           {
             headers: {
@@ -32,7 +39,6 @@ const Favorite = ({ userToken, elem }) => {
             },
           }
         );
-        console.log(elem.comics);
 
         console.log(response.data);
       } catch (error) {
@@ -46,6 +52,7 @@ const Favorite = ({ userToken, elem }) => {
   const handleDelete = async (event) => {
     event.stopPropagation();
     elem.favorite = false;
+    setPingFavorite(!pingFavorite);
     try {
       const response = await axios.delete(
         "https://site--marvel--mz8pkhlfl2x7.code.run/favorites/character/" +
